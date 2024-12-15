@@ -22,7 +22,6 @@ font-family: "Space Grotesk", sans-serif;
 body {
   background: var(--bg);
 }
-
 .container {
   width: 100vw;
   height: 100vh;

@@ -9,13 +9,21 @@ import {
   darkTheme,
 } from "@rainbow-me/rainbowkit";
 import { WagmiProvider } from "wagmi";
-import { seiDevnet , baseSepolia,polygonAmoy, arbitrumSepolia,bscTestnet, optimismSepolia, base} from "wagmi/chains";
+import {
+  seiDevnet,
+  baseSepolia,
+  polygonAmoy,
+  arbitrumSepolia,
+  bscTestnet,
+  optimismSepolia,
+  base,
+} from "wagmi/chains";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 
 const config = getDefaultConfig({
   appName: "DegOrg",
   projectId: import.meta.env.VITE_PROJECTID,
-  chains: [seiDevnet,baseSepolia,bscTestnet,polygonAmoy,arbitrumSepolia,optimismSepolia, base],
+  chains: [base],
 });
 const queryClient = new QueryClient();
 

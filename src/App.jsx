@@ -106,41 +106,41 @@ function App() {
         const chainId = walletClient.chain.id;
         // console.log(chainId);
         if (chainId === 8453) {
-          // const response = await axios.get(
-          //   `https://www.base.org/api/basenames/getUsernames?address=${userAddress}&network=base-mainnet`
-          // );
+          const response = await axios.get(
+            `https://www.base.org/api/basenames/getUsernames?address=${userAddress}&network=base-mainnet`
+          );
           // console.log(response);
 
           //JUST STRUCTURE FOR NOW
-          const response = {
-            data: [
-              {
-                domain: "delink.base.eth",
-                expires_at: "2025-12-12T12:21:59Z",
-                is_primary: true,
-                manager_address: "0xb9f75cB1B7eC69529190d973eB12D796236a0E90",
-                network_id: "base-mainnet",
-                owner_address: "0xb9f75cB1B7eC69529190d973eB12D796236a0E90",
-                primary_address: "0xb9f75cB1B7eC69529190d973eB12D796236a0E90",
-                token_id:
-                  "1380345562507568046886482777058730848922354961141990781398659957867626125991",
-              },
-              {
-                domain: "nuelyoungtech.base.eth",
-                expires_at: "2025-09-11T17:30:25Z",
-                is_primary: false,
-                manager_address: "0xb9f75cB1B7eC69529190d973eB12D796236a0E90",
-                network_id: "base-mainnet",
-                owner_address: "0xb9f75cB1B7eC69529190d973eB12D796236a0E90",
-                primary_address: "0x0000000000000000000000000000000000000000",
-                token_id:
-                  "39268747180991617798904539465512931896034045435948753918885435288544283446823",
-              },
-            ],
-            has_more: false,
-            next_page: "",
-            total_count: 2,
-          };
+          // const response = {
+          //   data: [
+          //     {
+          //       domain: "delink.base.eth",
+          //       expires_at: "2025-12-12T12:21:59Z",
+          //       is_primary: true,
+          //       manager_address: "0xb9f75cB1B7eC69529190d973eB12D796236a0E90",
+          //       network_id: "base-mainnet",
+          //       owner_address: "0xb9f75cB1B7eC69529190d973eB12D796236a0E90",
+          //       primary_address: "0xb9f75cB1B7eC69529190d973eB12D796236a0E90",
+          //       token_id:
+          //         "1380345562507568046886482777058730848922354961141990781398659957867626125991",
+          //     },
+          //     {
+          //       domain: "nuelyoungtech.base.eth",
+          //       expires_at: "2025-09-11T17:30:25Z",
+          //       is_primary: false,
+          //       manager_address: "0xb9f75cB1B7eC69529190d973eB12D796236a0E90",
+          //       network_id: "base-mainnet",
+          //       owner_address: "0xb9f75cB1B7eC69529190d973eB12D796236a0E90",
+          //       primary_address: "0x0000000000000000000000000000000000000000",
+          //       token_id:
+          //         "39268747180991617798904539465512931896034045435948753918885435288544283446823",
+          //     },
+          //   ],
+          //   has_more: false,
+          //   next_page: "",
+          //   total_count: 2,
+          // };
           // Extract domains
           const domains = response.data.map((item) => item.domain);
 
@@ -184,7 +184,7 @@ function App() {
 
       // console.log("JWT Token:", token);
       const response = await axios.post(
-        `http://localhost:5000/api/user/`,
+        `https://delink-production.up.railway.app/api/user/`,
         { redirect_link: formData.redirect_link },
         {
           headers: {
@@ -208,7 +208,7 @@ function App() {
     try {
       // console.log(formData.domainname);
       const response = await axios.get(
-        `http://localhost:5000/api/user/${formData.domainname}`
+        `https://delink-production.up.railway.app/api/user/${formData.domainname}`
       );
       // console.log(response.data);
       if (response.data.ensdomain) {
@@ -222,53 +222,12 @@ function App() {
       setErrorcont("Not yet Linked");
     }
   };
-  // UPDATE Domain
-  const updateDomain = async (e) => {
-    try {
-      // console.log(address);
-      if (walletClient && formData.tokenAddress !== "") {
-        // console.log(walletClient.chain.id);
-        const userAddress = walletClient.account.address;
-        const chainId = walletClient.chain.id;
-        if (contracts[chainId]) {
-          const contract = new ethers.Contract(
-            contracts[chainId].address,
-            contracts[chainId].abi,
-            signer
-          );
-          const tx = await contract.updateDomainToken(
-            formData.domainname,
-            formData.tokenAddress
-          );
-          console.log(tx);
-          setTxLink(`${contracts[chainId].txLink}${tx.hash}`);
-          setSuccessStage(1);
-        }
-      }
-    } catch (error) {
-      console.log(error);
-
-      if (error.data) {
-        const err = error.data.message.toString();
-        if (err.includes("insufficient funds")) {
-          setErrorcont("insufficient funds");
-        }
-      } else {
-        const err = error.message.toString();
-        if (err.includes("Domain is already registered")) {
-          setErrorcont("Domain is already registered");
-        }
-      }
-      // console.log(error.message.include("Domain is already registered"));
-    }
-  };
-
   // GET Domain DETAILS
   const getDomainDetails = async (e) => {
     e.preventDefault();
     try {
       const val = formData.verifyens;
-      const response = await axios.get(`http://localhost:5000/api/user/${val}`);
+      const response = await axios.get(`https://delink-production.up.railway.app/api/user/${val}`);
       // console.log(response.data);
       if (response.data.ensdomain) {
         setSuccessCont(
