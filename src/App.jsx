@@ -176,12 +176,10 @@ function App() {
       };
       // Example: Encode a JWT
       const secret = new TextEncoder().encode(import.meta.env.VITE_SECRET_KEY); // Convert the secret to a Uint8Array
-
       const token = await new SignJWT(payload)
         .setProtectedHeader({ alg: "HS256" })
         .sign(secret);
 
-      // console.log("JWT Token:", token);
       const response = await axios.post(
         `https://delink-production.up.railway.app/api/user/`,
         { redirect_link: formData.redirect_link },
