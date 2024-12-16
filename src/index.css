@@ -395,6 +395,9 @@ body {
 
 /****•••••••••••MOBILE RESPONSIVENESS•••••••••••••****/
 @media (max-width: 768px) {
+  .container {
+    height: 100vh;
+  }
   .container nav {
     padding: 0em 1.5em;
   }
@@ -419,11 +422,11 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: flex-start;
     align-self: flex-start;
     position: absolute;
     z-index: 9;
-    padding-bottom: 350px;
+    padding-top: 9em;
   }
 
   .container header .txt {
@@ -443,12 +446,11 @@ body {
   .container header .txt button .icon {
     font-size: 1.2em;
   }
-
   .container header .solarCont img:first-child {
     position: absolute;
     object-fit: contain;
     width: 100%;
-    bottom: -10%;
+    bottom: -19%;
     left: 50%;
     transform: translateX(-50%);
   }
@@ -456,7 +458,7 @@ body {
     position: absolute;
     object-fit: contain;
     width: 100%;
-    bottom: -10%;
+    bottom: -19%;
     left: 50%;
     transform: translateX(-50%);
   }
