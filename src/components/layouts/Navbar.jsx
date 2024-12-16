@@ -61,14 +61,14 @@ function Navbar() {
 
                 return (
                   <div style={{ display: "flex", gap: "1em" }}>
-                    <button
+                    {/* <button
                       onClick={openChainModal}
                       type="button"
                       className="btn"
                     >
                       <RiWallet3Fill className="icon" />
                       Switch network
-                    </button>
+                    </button> */}
                     <button onClick={openAccountModal} className="btn">
                       <RiWallet3Fill />
                       Disconnect

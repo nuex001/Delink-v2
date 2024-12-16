@@ -43,7 +43,7 @@ body {
 
 .star {
   position: absolute;
-  background-color: white;
+  background-color: var(--text);
   border-radius: 50%;
   opacity: 0.8;
   clip-path: polygon(
@@ -137,7 +137,7 @@ body {
   color: var(--bg);
   font-family: "Space Grotesk", sans-serif;
   /* background: var(--text); */
-  background: linear-gradient(to right, #ffffff 0%, #d9d9d9 100%);
+  background: linear-gradient(to right, var(--text) 0%, var(--header) 100%);
   border: none;
   outline: none;
   cursor: pointer;
@@ -227,7 +227,7 @@ body {
   font-size: 1.4em;
   background: var(--header2);
   box-shadow: 2.6px 5.1px 5.1px rgba(0, 0, 0, 0.4);
-  border: 1px solid #b3b3b3;
+  border: 1px solid var(--header2);
   outline: none;
   border-radius: 5px;
 }
@@ -263,7 +263,7 @@ body {
   outline: none;
   background: var(--header2);
   box-shadow: 2.6px 5.1px 5.1px rgba(0, 0, 0, 0.4);
-  border: 1px solid #b3b3b3;
+  border: 1px solid var(--header);
   border-radius: 5px;
 }
 .container header .box .rows .select {
@@ -290,7 +290,7 @@ body {
   color: crimson;
   font-size: 1.4em;
 }
-.container header .box p.success{
+.container header .box p.success {
   color: var(--text);
   font-size: 1.4em;
 }
@@ -313,7 +313,7 @@ body {
   background: var(--text);
   border-radius: 5px;
 }
-.container .overlay .overBox img{
+.container .overlay .overBox img {
   display: block;
   object-fit: contain;
   height: 200px;
@@ -321,39 +321,39 @@ body {
   margin: 1em auto;
 }
 
-.container .overlay .overBox .details{
-width: 100%;
-height: auto;
-display: flex;
-flex-direction: column;
-align-items: center;
+.container .overlay .overBox .details {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.container .overlay .overBox h1{
+.container .overlay .overBox h1 {
   font-size: 2em;
-color: var(--bg);
-text-align: center;
-margin-bottom: 0.5em;
+  color: var(--bg);
+  text-align: center;
+  margin-bottom: 0.5em;
 }
-.container .overlay .overBox .details p{
+.container .overlay .overBox .details p {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   font-size: 1.8em;
-  gap:0em  0.1em;
+  gap: 0em 0.1em;
 }
-.container .overlay .overBox .details p span{
+.container .overlay .overBox .details p span {
   font-weight: 600;
   font-size: 0.9em;
   margin-left: 0.1em;
 }
-.container .overlay .overBox .details a{
+.container .overlay .overBox .details a {
   font-size: 1.4em;
   color: var(--bg);
   margin-left: 0.1em;
 }
-.container .overlay .overBox .details a.subLink{
+.container .overlay .overBox .details a.subLink {
   width: 100%;
   display: flex;
   align-items: center;
@@ -362,11 +362,10 @@ margin-bottom: 0.5em;
   font-size: 0.7em;
   font-weight: 600;
 }
-.container .overlay .overBox .details a.subLink .copy{
+.container .overlay .overBox .details a.subLink .copy {
   font-size: 1.7em;
-
 }
-.container .overlay .overBox button{
+.container .overlay .overBox button {
   display: flex;
   align-items: center;
   gap: 0.5em;
@@ -383,7 +382,6 @@ margin-bottom: 0.5em;
   cursor: pointer;
 }
 
-
 @keyframes move-star {
   from {
     transform: translateY(0);
@@ -392,5 +390,140 @@ margin-bottom: 0.5em;
   to {
     transform: translateY(100vh);
     opacity: 0;
+  }
+}
+
+/****•••••••••••MOBILE RESPONSIVENESS•••••••••••••****/
+@media (max-width: 768px) {
+  .container nav {
+    padding: 0em 1.5em;
+  }
+  .container nav a {
+    font-size: 1.6em;
+  }
+
+  .container nav button {
+    font-size: 1.4em;
+    padding: 0.8em 1em;
+  }
+  .container nav button.btn {
+    display: flex;
+    align-items: center;
+    gap: 0.1em;
+  }
+
+  /* HEADER */
+  .container header {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    align-self: flex-start;
+    position: absolute;
+    z-index: 9;
+    padding-bottom: 350px;
+  }
+
+  .container header .txt {
+    width: 100%;
+    color: var(--text);
+    position: relative;
+    z-index: 1;
+  }
+
+  .container header .txt h1 {
+    font-size: 3.6em;
+  }
+  .container header .txt h2 {
+    font-size: 1.3em;
+  }
+
+  .container header .txt button .icon {
+    font-size: 1.2em;
+  }
+
+  .container header .solarCont img:first-child {
+    position: absolute;
+    object-fit: contain;
+    width: 100%;
+    bottom: -10%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .container header .solarCont img:last-child {
+    position: absolute;
+    object-fit: contain;
+    width: 100%;
+    bottom: -10%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  /*  */
+  .container header .box {
+    margin-top: 2em;
+  }
+  .container header .box ul li {
+    font-size: 1.2em;
+    padding: 0.8em 1.2em;
+  }
+  .container header .box .rows {
+    gap: 0.7em;
+    padding-left: 0.7em;
+  }
+  .container header .box .rows .inptBox {
+    font-size: 1.2em;
+  }
+  /*  */
+  .container header .box .rows .inptBoxSub {
+    font-size: 1.2em;
+  }
+  .container header .box .rows .next {
+    font-size: 1.2em;
+    padding: 0.9em 1em;
+  }
+
+  .container header .box p {
+    font-size: 1.2em;
+  }
+  .container header .box p.success {
+    font-size: 1.2em;
+  }
+
+  .container .overlay .overBox {
+    width: 300px;
+  }
+  .container .overlay .overBox img {
+    width: 200px;
+    margin: 0.5em auto;
+  }
+
+  .container .overlay .overBox .details {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .container .overlay .overBox h1 {
+    font-size: 1.6em;
+  }
+  .container .overlay .overBox .details p {
+    font-size: 1.4em;
+  }
+  .container .overlay .overBox .details a {
+    font-size: 1.2em;
+  }
+  .container .overlay .overBox .details a.subLink {
+    gap: 1em;
+  }
+  .container .overlay .overBox .details a.subLink .copy {
+    font-size: 1.2em;
+  }
+  .container .overlay .overBox button {
+    font-size: 1.2em;
   }
 }
