@@ -106,10 +106,10 @@ function App() {
         const chainId = walletClient.chain.id;
         // console.log(chainId);
         if (chainId === 8453) {
-          console.log(`https://www.base.org/api/basenames/getUsernames?address=${userAddress}&network=base-mainnet`);
           const response = await axios.get(
-            `https://www.base.org/api/basenames/getUsernames?address=${userAddress}&network=base-mainnet`
+            `http://localhost:5000/api/user/getUsernames?address=${userAddress}`
           );
+          console.log(response.data.data);
           //JUST STRUCTURE FOR NOW
           // const response = {
           //   data: [
@@ -141,7 +141,7 @@ function App() {
           //   total_count: 2,
           // };
           // Extract domains
-          const domains = response.data.map((item) => item.domain);
+          const domains = response.data.data.map((item) => item.domain);
 
           // console.log(domains);
           if (domains.length > 0) {
@@ -226,7 +226,9 @@ function App() {
     e.preventDefault();
     try {
       const val = formData.verifyens;
-      const response = await axios.get(`https://delink-production.up.railway.app/api/user/${val}`);
+      const response = await axios.get(
+        `https://delink-production.up.railway.app/api/user/${val}`
+      );
       // console.log(response.data);
       if (response.data.ensdomain) {
         setSuccessCont(
