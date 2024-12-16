@@ -107,7 +107,7 @@ function App() {
         // console.log(chainId);
         if (chainId === 8453) {
           const response = await axios.get(
-            `http://localhost:5000/api/user/getUsernames?address=${userAddress}`
+            `https://delink-production.up.railway.app/api/user/getUsernames?address=${userAddress}`
           );
           console.log(response.data.data);
           //JUST STRUCTURE FOR NOW
