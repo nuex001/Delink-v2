@@ -106,11 +106,10 @@ function App() {
         const chainId = walletClient.chain.id;
         // console.log(chainId);
         if (chainId === 8453) {
+          console.log(`https://www.base.org/api/basenames/getUsernames?address=${userAddress}&network=base-mainnet`);
           const response = await axios.get(
             `https://www.base.org/api/basenames/getUsernames?address=${userAddress}&network=base-mainnet`
           );
-          // console.log(response);
-
           //JUST STRUCTURE FOR NOW
           // const response = {
           //   data: [
