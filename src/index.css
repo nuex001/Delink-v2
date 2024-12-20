@@ -106,7 +106,7 @@ body {
   align-self: flex-start;
   position: absolute;
   z-index: 9;
-  padding-bottom: 350px;
+  padding-bottom: 22%;
 }
 
 .container header .txt {
