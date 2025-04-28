@@ -1,85 +1,45 @@
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-import React, { useEffect, useState } from "react";
-import { RiWallet3Fill } from "react-icons/ri";
+import React, { useEffect, useRef, useState } from "react";
+import { FaLink } from "react-icons/fa6";
 function Navbar() {
+  const [copied, setcopied] = useState(false);
+  const timeoutRef = useRef(null); // store the timeout
+
+  const copyLink = (e) => {
+    e.preventDefault(); // optional, if it's inside a button or link
+    navigator.clipboard
+      .writeText(window.location.href)
+      .then(() => {
+        setcopied(true);
+        timeoutRef.current = setTimeout(() => {
+          setcopied(false);
+        }, 1000);
+        console.log("Link copied to clipboard!");
+        // You can also trigger a toast or success message here
+      })
+      .catch((err) => {
+        setcopied(false);
+        console.error("Failed to copy:", err);
+      });
+  };
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
+
   return (
     <nav>
       <a href="#" className="logo">
         DeLink
       </a>
-      <ConnectButton.Custom>
-        {({
-          account,
-          chain,
-          openAccountModal,
-          openChainModal,
-          openConnectModal,
-          authenticationStatus,
-          mounted,
-        }) => {
-          // Note: If your app doesn't use authentication, you
-          // can remove all 'authenticationStatus' checks
-          const ready = mounted && authenticationStatus !== "loading";
-          const connected =
-            ready &&
-            account &&
-            chain &&
-            (!authenticationStatus || authenticationStatus === "authenticated");
-          return (
-            <div
-              {...(!ready && {
-                "aria-hidden": true,
-                style: {
-                  opacity: 0,
-                  pointerEvents: "none",
-                  userSelect: "none",
-                },
-              })}
-            >
-              {(() => {
-                if (!connected) {
-                  return (
-                    <button onClick={openConnectModal} className="btn">
-                      <RiWallet3Fill className="icon" />
-                      Connect Wallet
-                    </button>
-                  );
-                }
-
-                if (chain.unsupported) {
-                  return (
-                    <button
-                      onClick={openChainModal}
-                      type="button"
-                      className="btn"
-                    >
-                      <RiWallet3Fill className="icon" />
-                      Wrong network
-                    </button>
-                  );
-                }
-
-                return (
-                  <div style={{ display: "flex", gap: "1em" }}>
-                    {/* <button
-                      onClick={openChainModal}
-                      type="button"
-                      className="btn"
-                    >
-                      <RiWallet3Fill className="icon" />
-                      Switch network
-                    </button> */}
-                    <button onClick={openAccountModal} className="btn">
-                      <RiWallet3Fill />
-                      Disconnect
-                    </button>
-                  </div>
-                );
-              })()}
-            </div>
-          );
-        }}
-      </ConnectButton.Custom>
+      <button onClick={copyLink}>
+       <FaLink className="icon"/>
+        {copied ? " Copied" : "My Link"}
+      </button>
     </nav>
   );
 }
