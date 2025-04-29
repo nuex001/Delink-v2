@@ -35,6 +35,23 @@ const baseClient = createPublicClient({
   transport: http("https://mainnet.base.org"),
 });
 
+
+export async function getBasenameAddress(basename) {
+  try {
+    const address = await baseClient.readContract({
+      abi: L2ResolverAbi,
+      address: BASENAME_L2_RESOLVER_ADDRESS,
+      functionName: "addr",
+      args: [namehash(basename)],
+    });
+    return address;
+  } catch (error) {
+    console.error("Error resolving basename to address:", error);
+    return null;
+  }
+}
+
+
 export function buildBasenameTextRecordContract(basename, key) {
   return {
     abi: L2ResolverAbi,
