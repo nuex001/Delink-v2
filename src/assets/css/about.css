@@ -1,0 +1,152 @@
+.container .about {
+  width: 100%;
+  height: calc(100vh - 5em);
+  position: relative;
+  z-index: 4;
+  padding-top: 4em;
+  /* border: 2px solid var(--text); */
+}
+.container .about h1 {
+  font-size: 6em;
+  font-weight: 500;
+  letter-spacing: -3px;
+  color: var(--text);
+  text-align: center;
+}
+
+.container .about .boxRows {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  margin-top: 2em;
+  padding: 0em 6em;
+}
+
+.container .about .boxRows .box {
+  display: flex;
+  width: 500px;
+  height: 120px;
+  padding: 0px 27px;
+  align-items: center;
+  gap: 30px;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: linear-gradient(
+    157deg,
+    rgba(255, 255, 255, 0) 10.07%,
+    rgba(255, 255, 255, 0.05) 87.64%
+  );
+  color: var(--text);
+}
+
+.container .about .boxRows .box:nth-of-type(odd) {
+  margin-left: auto;
+}
+.container .about .boxRows .box .imgCont {
+  width: 100px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+}
+.container .about .boxRows .box .imgCont img {
+  object-fit: contain;
+  width: 40px;
+}
+.container .about .boxRows .box:first-child .imgCont {
+  background-color: rgb(0 82 255 / var(--tw-bg-opacity, 1));
+}
+.container .about .boxRows .box:nth-child(2) .imgCont {
+  background-color: rgb(34 173 115 / var(--tw-bg-opacity, 1));
+}
+.container .about .boxRows .box:nth-child(3) .imgCont {
+  background-color: rgb(138 85 233 / var(--tw-bg-opacity, 1));
+}
+.container .about .boxRows .box .txt_cont {
+  width: calc(100% - 100px);
+}
+.container .about .boxRows .box .txt_cont h2 {
+  color: var(--text);
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 110%; /* 39.6px */
+  letter-spacing: -1px;
+  text-transform: capitalize;
+}
+.container .about .boxRows .box .txt_cont p {
+  font-size: 14px;
+  font-weight: 200;
+  line-height: 120%; /* 39.6px */
+  margin-top: 0.5em;
+}
+
+/****•••••••••••MOBILE RESPONSIVENESS•••••••••••••****/
+@media (max-width: 768px) {
+  .container .about {
+    width: 100%;
+    height: calc(100vh - 15em);
+    position: relative;
+    z-index: 4;
+    padding-top: 4em;
+    /* border: 2px solid var(--text); */
+  }
+  .container .about h1 {
+    font-size: 3em;
+    letter-spacing: -1px;
+  }
+
+  .container .about .boxRows {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    margin-top: 3em;
+    padding: 0em 2em;
+  }
+
+  .container .about .boxRows .box {
+    display: flex;
+    width: 100%;
+    height: auto;
+    padding: 15px 15px;
+    align-items: center;
+    gap: 30px;
+    border-radius: 10px;
+  }
+
+  .container .about .boxRows .box:nth-of-type(odd) {
+    margin-left: auto;
+  }
+  .container .about .boxRows .box .imgCont {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+  }
+  .container .about .boxRows .box .imgCont img {
+    object-fit: contain;
+    width: 30px;
+  }
+  .container .about .boxRows .box .txt_cont h2 {
+    color: var(--text);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 110%; /* 39.6px */
+    letter-spacing: -1px;
+    text-transform: capitalize;
+  }
+  .container .about .boxRows .box .txt_cont p {
+    font-size: 12px;
+    font-weight: 200;
+    line-height: 120%; /* 39.6px */
+    margin-top: 0.5em;
+  }
+}
