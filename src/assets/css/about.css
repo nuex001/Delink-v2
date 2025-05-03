@@ -39,6 +39,7 @@
     rgba(255, 255, 255, 0.05) 87.64%
   );
   color: var(--text);
+  cursor: pointer;
 }
 
 .container .about .boxRows .box:nth-of-type(odd) {
@@ -82,6 +83,90 @@
   font-weight: 200;
   line-height: 120%; /* 39.6px */
   margin-top: 0.5em;
+}
+
+.container .about .overlay {
+  position: fixed;
+  z-index: 5;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.1);
+  transform: scale(0);
+  transition: transform 500ms ease-in-out;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+  transform-origin: bottom;
+}
+.container .about .overlay::-webkit-scrollbar {
+    display: none;
+  }
+  
+.container .about .overlay.active{
+  transform: scale(1);
+}
+
+.container .about form {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: auto;
+  padding:30px 27px;
+  align-items: center;
+  gap: 30px;
+  border-radius: 10px;
+  background: var(--text);
+}
+.container .about form h2 {
+  color: var(--header2);
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 110%; /* 39.6px */
+  letter-spacing: -1px;
+  text-transform: capitalize;
+}
+.container .about form input {
+  width: 100%;
+  height: 50px;
+  border: 1px solid var(--header);
+  outline: none;
+  padding: 0em 1em;
+  border-radius: 7px;
+}
+
+.container .about form p {
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 200;
+  line-height: 120%; /* 39.6px */
+  margin-top: 0.5em;
+  color: var(--header);
+}
+.container .about form p a{
+  color: var(--header);
+  margin-left: 0.5em;
+  }
+.container .about form button.btn {
+  font-size: 1.4em;
+  color: var(--text);
+  font-family: "Space Grotesk", sans-serif;
+  background: var(--header2);
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0.9em 2.4em;
+  border-radius: 5px;
 }
 
 /****•••••••••••MOBILE RESPONSIVENESS•••••••••••••****/
@@ -149,4 +234,26 @@
     line-height: 120%; /* 39.6px */
     margin-top: 0.5em;
   }
+
+.container .about .overlay {
+  position: fixed;
+  z-index: 5;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.1);
+  transform: scale(0);
+  transition: transform 500ms ease-in-out;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+  transform-origin: bottom;
+}
+.container .about form {
+  width: 350px;
+  padding:40px 27px;
+}
 }

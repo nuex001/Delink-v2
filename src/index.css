@@ -17,7 +17,7 @@ font-family: "Space Grotesk", sans-serif;
   --text: #fff;
   --primary: #3333;
   --header: #b3b3b3;
-  --header2: #282828;
+  --header2: #000;
 }
 html{
   scroll-behavior: smooth;
