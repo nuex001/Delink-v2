@@ -107,7 +107,7 @@ body {
   color: var(--text);
 }
 
-.container nav button {
+.container nav .btn {
   font-size: 1.4em;
   color: var(--text);
   font-family: "Space Grotesk", sans-serif;
@@ -121,7 +121,7 @@ body {
   padding: 0.8em 1.4em;
   border-radius: 5px;
 }
-.container nav button .icon {
+.container nav .btn .icon {
   font-size: 15px;
 }
 /*  */
@@ -345,11 +345,11 @@ body {
     font-size: 1.8em;
   }
 
-  .container nav button {
+  .container nav .btn {
     font-size: 1.4em;
     padding: 0.8em 1em;
   }
-  .container nav button .icon {
+  .container nav .btn .icon {
     font-size: 15px;
   }
 
