@@ -23,11 +23,11 @@ html{
   scroll-behavior: smooth;
 }
 body {
-  background: var(--bg);
+  background: #121212;
 }
 .container {
   width: 100vw;
-  height: 100dvh; /* better for mobile than 100vh */
+  height: 100vh; /* better for mobile than 100vh */
   font-size: 10px;
   background: var(--bg);
   position: relative;
@@ -35,7 +35,6 @@ body {
   align-items: center;
   justify-content: center;
   font-family: "Space Grotesk", sans-serif;
-  padding-top: 6em;
   overflow-y: auto; 
   -webkit-overflow-scrolling: touch; /* for smooth scrolling on iOS */
 }

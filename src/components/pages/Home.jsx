@@ -10,8 +10,9 @@ import {
 import dp from "../../assets/images/dp.jpg";
 import { useParams } from "react-router-dom";
 import { getIconAndLabel, resolveIpfsUrl } from "../../utils/utils";
-import { Helmet } from 'react-helmet';
-
+import { Helmet } from "react-helmet";
+import { ethers } from "ethers";
+import { fetchEnsDomain } from "../layouts/ensnames";
 
 function Home() {
   const [bnsDomainState, setBnsDomainState] = useState("");
@@ -19,9 +20,21 @@ function Home() {
   const [ensRecordAvatar, setEnsRecordAvatar] = useState(null);
   const [loading, setLoading] = useState(true);
   const [empty, setEmpty] = useState(false);
+  const [ensData, setEnsData] = useState(null);
 
   const { bnsDomain } = useParams();
   //   console.log("bnsDomain" + bnsDomain);
+
+  const fetchEnsDomainFunc = async (ensName) => {
+    try {
+      const textRecords = await fetchEnsDomain(ensName);
+      //  console.log(textRecords);
+      setBnsRecords(textRecords);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   async function fetchData(bnsDomainLower) {
     setLoading(true);
@@ -51,7 +64,22 @@ function Home() {
     if (bnsDomain) {
       const bnsDomainLower = bnsDomain.toLowerCase();
       setBnsDomainState(bnsDomainLower);
-      fetchData(bnsDomainLower);
+      // Check if it ends with .eth
+      if (bnsDomainLower.endsWith(".eth")) {
+        fetchEnsDomainFunc(bnsDomainLower);
+        setLoading(false);
+        return;
+      }
+
+      // Check if it ends with .base
+      if (bnsDomainLower.endsWith(".base")) {
+        fetchData(bnsDomainLower);
+        return;
+      } else {
+        // defaults to base
+        fetchData(bnsDomainLower);
+        return;
+      }
     }
   }, [bnsDomain]);
   return (
