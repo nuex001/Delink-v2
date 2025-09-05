@@ -99,11 +99,16 @@ body {
   padding: 0em 4em;
   z-index: 99999;
   /* border: 2px solid var(--text); */
+  position: fixed;
 }
 .container nav a {
   font-size: 3em;
   font-weight: 700;
   color: var(--text);
+}
+.container nav a img{
+object-fit: contain;
+width: 4em;
 }
 
 .container nav .btn {
@@ -192,6 +197,49 @@ body {
   color: var(--header);
   margin-top: 0.2em;
 }
+.container .follow_cont {
+width: 100%;
+height: auto;
+display: flex;
+justify-content: center;
+gap: 1em;
+/* border: 1px solid var(--text); */
+}
+
+
+.container .follow_cont .reactions {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.container .follow_cont .reactions img {
+  position: relative;
+  margin-left: -1.4em;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  position: relative;
+  z-index: 2;
+}
+.container .follow_cont .reactions img:first-child {
+  margin-left: 0em;
+}
+.container .follow_cont .reactions img:hover {
+  transform: scale(1.1);
+  z-index: 4;
+}
+
+.container .follow_cont .reactions span {
+  display: flex;
+  align-items: center;
+  margin-left: 0.5em;
+  font-size: 1.6em;
+}
+.container .follow_cont .reactions span .icon {
+  margin-right: 0.3em;
+}
+
 .container ul {
   width: 100%;
   height: auto;
@@ -288,6 +336,34 @@ body {
   transform: rotateY(70deg);
   animation-delay: 0.4s;
 }
+
+.sidePopUp{
+  position: fixed;
+  bottom: 2em;
+  right: 2em;
+  width: 200px;
+  height: 200px;
+  border-radius: 1em;
+  background: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 9999;
+  /* border: 2px solid var(--text); */
+}
+.sidePopUp img{
+object-fit: contain;
+width: 100%;
+height: 100%;
+/* padding: 1em; */
+}
+
+
+
+
+
+
 
 @keyframes rotate {
   0% {

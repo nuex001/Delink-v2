@@ -2,6 +2,7 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 import React, { useEffect, useRef, useState } from "react";
 import { FaLink } from "react-icons/fa6";
 import { useLocation } from "react-router-dom"; // STEP 1
+import logo from "../../assets/images/logo.png";
 
 function Navbar() {
   const [copied, setcopied] = useState(false);
@@ -40,7 +41,7 @@ function Navbar() {
   return (
     <nav>
       <a href="/" className="logo">
-        DeLink
+        <img src={logo} alt="logo" />
       </a>
       {!isHomePage ? (
         <button onClick={copyLink} className="btn">

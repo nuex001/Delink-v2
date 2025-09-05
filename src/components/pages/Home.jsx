@@ -8,6 +8,10 @@ import {
   getBasenameTextRecords,
 } from "../layouts/basenames";
 import dp from "../../assets/images/dp.jpg";
+import Img from "../../assets/images/Ellipse 2.png";
+import Img1 from "../../assets/images/Ellipse 3.png";
+import Img2 from "../../assets/images/Ellipse 4.png";
+import Img3 from "../../assets/images/Ellipse 5.png";
 import { useParams } from "react-router-dom";
 import { getIconAndLabel, resolveIpfsUrl } from "../../utils/utils";
 import { Helmet } from "react-helmet";
@@ -51,7 +55,7 @@ function Home() {
     }
 
     const records = await getBasenameTextRecords(basename);
-    // console.log(records);
+    console.log(records);
 
     setBnsRecords(records);
     // console.log(records);
@@ -72,7 +76,7 @@ function Home() {
       }
 
       // Check if it ends with .base
-      if (bnsDomainLower.endsWith(".base")) {
+      if (bnsDomainLower.endsWith(".base.eth")) {
         fetchData(bnsDomainLower);
         return;
       } else {
@@ -129,14 +133,52 @@ function Home() {
             <meta name="twitter:card" content="summary_large_image" />
             <title>DeLink - {bnsDomainState}</title>
           </Helmet>
+          <div className="sidePopUp">
+            {bnsDomainState && bnsDomainState.endsWith(".eth") ? (
+              <img src={`/qr/${bnsDomainState}/qr`} alt="ENS QR Code" />
+            ) : (
+              <></>
+            )}
+          </div>
           <div className="rows">
+            {/* Avatar */}
             <img
-              src={bnsRecords?.Avatar ? resolveIpfsUrl(bnsRecords?.Avatar) : dp}
+              src={bnsRecords?.Avatar ? resolveIpfsUrl(bnsRecords.Avatar) : dp}
               alt=""
               className="dp"
             />
-            <h2>@{bnsDomainState} </h2>
-            <p>{bnsRecords?.Description}</p>
+
+            {/* Name */}
+            <h2>@{bnsRecords?.name || bnsDomainState}</h2>
+
+            {/* Description */}
+            {bnsRecords?.Description && <p>{bnsRecords.Description}</p>}
+
+            {/* Following / Followers */}
+            {bnsRecords?.following_count > 0 && (
+              <ul className="follow_cont">
+                <div className="reactions">
+                  <img src={Img} alt="" />
+                  <img src={Img1} alt="" />
+                  <img src={Img2} alt="" />
+                  <img src={Img} alt="" />
+                  <img src={Img3} alt="" />
+                  <span>{bnsRecords.following_count} Following</span>
+                </div>
+                <div className="reactions">
+                  <img src={Img} alt="" />
+                  <img src={Img1} alt="" />
+                  <img src={Img2} alt="" />
+                  <img src={Img} alt="" />
+                  <img src={Img3} alt="" />
+                  <span>{bnsRecords.followers_count} Followers</span>
+                </div>
+              </ul>
+            )}
+
+            {/* Status */}
+            {bnsRecords?.Status && <p>{bnsRecords.Status}</p>}
+
             <ul>
               {bnsRecords?.Github && (
                 <a
@@ -216,6 +258,78 @@ function Home() {
                   </div>
                 </a>
               )}
+              {bnsRecords?.Telegram && (
+                <a
+                  href={`https://warpcast.com/${bnsRecords?.Telegram}`}
+                  target="_blank"
+                  className="box"
+                >
+                  <div className="btn">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="icon"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z" />
+                      <path d="m21.854 2.147-10.94 10.939" />
+                    </svg>
+                    <h2>Telegram</h2>
+                  </div>
+                </a>
+              )}
+              {bnsRecords?.Email && (
+                <a
+                  href={`https://warpcast.com/${bnsRecords?.Email}`}
+                  target="_blank"
+                  className="box"
+                >
+                  <div className="btn">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="icon"
+                    >
+                      <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" />
+                      <rect x="2" y="4" width="20" height="16" rx="2" />
+                    </svg>
+                    <h2>Email</h2>
+                  </div>
+                </a>
+              )}
+              {bnsRecords?.Discord && (
+                <a
+                  href={`https://warpcast.com/${bnsRecords?.Discord}`}
+                  target="_blank"
+                  className="box"
+                >
+                  <div className="btn">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 33.867 33.867"
+                      id="discord"
+                      className="icon"
+                    >
+                      <path
+                        d="M11.343 5.177c-1.076 0-4.32 1.316-4.902 1.579-.582.263-1.228 1.084-1.961 2.439-.734 1.355-1.323 2.939-2.28 5.269-.956 2.33-1.179 6.822-1.147 8.193.032 1.371.189 2.442 1.594 3.253 1.404.81 2.646 1.658 3.953 2.168 1.308.51 2.2.877 2.806.367.606-.51 1.005-1.403 1.005-1.403s.574-.797-.51-1.275c-1.084-.479-1.626-.814-1.579-1.308.048-.494.127-.765.398-.701.271.064.91 1.211 3.365 1.737s4.848.447 4.848.447 2.394.08 4.849-.447c2.455-.526 3.093-1.673 3.364-1.737.271-.064.35.207.398.7.048.495-.494.83-1.578 1.309-1.084.478-.51 1.275-.51 1.275s.399.892 1.005 1.403c.605.51 1.498.143 2.805-.367 1.307-.51 2.55-1.357 3.954-2.168 1.405-.811 1.562-1.882 1.594-3.253.032-1.37-.191-5.863-1.148-8.193-.956-2.33-1.546-3.914-2.28-5.269-.732-1.355-1.379-2.176-1.96-2.44-.582-.262-3.827-1.578-4.903-1.578-1.076 0-1.394.75-1.394.75l-.375.829s-2.52-.479-3.804-.48c-1.284 0-3.837.48-3.837.48l-.375-.83s-.318-.749-1.395-.749zm.117 9.948h.04c1.569 0 2.84 1.373 2.84 3.066 0 1.694-1.271 3.066-2.84 3.066s-2.84-1.372-2.84-3.066c-.001-1.677 1.247-3.043 2.8-3.066zm10.907 0h.04c1.553.023 2.8 1.39 2.8 3.066 0 1.694-1.271 3.066-2.84 3.066-1.57 0-2.84-1.372-2.84-3.066 0-1.693 1.27-3.066 2.84-3.066z"
+                        paint-order="fill markers stroke"
+                        fill="#ffffff"
+                        class="color000000 svgShape"
+                      ></path>
+                    </svg>
+                    <h2>Discord</h2>
+                  </div>
+                </a>
+              )}
               {bnsRecords?.Url && (
                 <a href={`${bnsRecords?.Url}`} target="_blank" className="box">
                   <div className="btn">
@@ -240,25 +354,6 @@ function Home() {
                   </div>
                 </a>
               )}
-
-              {/* <a href="#" className="box">
-              <div className="btn">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="icon"
-                >
-                  <path
-                    fillRule="evenodd"
-                    clipRule="evenodd"
-                    d="M11.4424 23.8252L11.5273 23.8726L11.5612 23.8916C11.6958 23.9627 11.8464 24 11.9994 24C12.1524 24 12.303 23.9627 12.4376 23.8916L12.4715 23.8738L12.5576 23.8252C13.0317 23.5503 13.4943 23.2569 13.9442 22.9457C15.1092 22.1415 16.1976 21.2362 17.1964 20.2409C19.5527 17.8822 22 14.3383 22 9.77851C22 7.18509 20.9464 4.69789 19.0711 2.86406C17.1957 1.03023 14.6522 0 12 0C9.34784 0 6.8043 1.03023 4.92893 2.86406C3.05357 4.69789 2 7.18509 2 9.77851C2 14.3371 4.44848 17.8822 6.80364 20.2409C7.80199 21.2362 8.89003 22.1414 10.0545 22.9457C10.5049 23.2569 10.9679 23.5503 11.4424 23.8252ZM12 13.3343C12.9644 13.3343 13.8893 12.9597 14.5713 12.2929C15.2532 11.626 15.6364 10.7216 15.6364 9.77851C15.6364 8.83545 15.2532 7.93101 14.5713 7.26416C13.8893 6.59732 12.9644 6.22269 12 6.22269C11.0356 6.22269 10.1107 6.59732 9.4287 7.26416C8.74675 7.93101 8.36364 8.83545 8.36364 9.77851C8.36364 10.7216 8.74675 11.626 9.4287 12.2929C10.1107 12.9597 11.0356 13.3343 12 13.3343Z"
-                    fill="currentColor"
-                  ></path>
-                </svg>
-                <h2>Global</h2>
-              </div>
-            </a> */}
             </ul>
           </div>
         </>
@@ -268,3 +363,12 @@ function Home() {
 }
 
 export default Home;
+
+/**
+ * @FOLLOWING_COUNT
+ * https://api.ethfollow.xyz/api/v1/users/limes.eth/stats
+ *
+ * @
+ *
+ *
+ */
