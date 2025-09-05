@@ -77,7 +77,7 @@ function Home() {
       const payment = await pay({
         amount: `${DollarAmount}.00`,
         to: address,
-        testnet: true,
+        testnet: false,
       });
       console.log("Payment sent:", payment.id);
       successMsg(`Payment sent`);
