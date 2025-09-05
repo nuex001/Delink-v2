@@ -80,7 +80,7 @@ function Home() {
         testnet: true,
       });
       console.log("Payment sent:", payment.id);
-      successMsg(`Payment sent:, ${payment.id}`);
+      successMsg(`Payment sent`);
     } catch (error) {
       console.error("Payment failed:", error);
     }
