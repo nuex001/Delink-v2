@@ -170,7 +170,7 @@ function Home() {
                   <div className="input_cont">
                     <span>$</span>
                     <input
-                      type="number"
+                      type="tel"
                       ref={dollarInputRef}
                       onChange={(e) => setDollarAmount(e.target.value)}
                       placeholder="5"
