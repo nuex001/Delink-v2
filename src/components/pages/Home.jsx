@@ -17,6 +17,10 @@ import { getIconAndLabel, resolveIpfsUrl } from "../../utils/utils";
 import { Helmet } from "react-helmet";
 import { ethers } from "ethers";
 import { fetchEnsDomain } from "../layouts/ensnames";
+import { useRef } from "react";
+import { pay } from "@base-org/account";
+import { ToastContainer } from "react-toastify";
+import { successMsg } from "../../utils/messages_utils";
 
 function Home() {
   const [bnsDomainState, setBnsDomainState] = useState("");
@@ -25,7 +29,9 @@ function Home() {
   const [loading, setLoading] = useState(true);
   const [empty, setEmpty] = useState(false);
   const [ensData, setEnsData] = useState(null);
-
+  const [DollarAmount, setDollarAmount] = useState(0);
+  const dollarInputRef = useRef(null);
+  const buyCoffeeRef = useRef(null);
   const { bnsDomain } = useParams();
   //   console.log("bnsDomain" + bnsDomain);
 
@@ -44,7 +50,7 @@ function Home() {
     setLoading(true);
     if (bnsDomainLower === undefined) throw Error("failed to resolve basename");
     const basename = bnsDomainLower + ".base.eth";
-    // console.log(basename);
+    setBnsDomainState(basename);
 
     const resolvedAddr = await getBasenameAddress(basename);
     // console.log(`Resolved Addr: ${resolvedAddr}`);
@@ -62,7 +68,27 @@ function Home() {
     setLoading(false);
   }
 
-  // Now map through URLs
+  // Handle Payment Method
+  const handlePayment = async (e) => {
+    try {
+      e.preventDefault();
+      const address = await getBasenameAddress(bnsDomainState);
+      console.log(address);
+      const payment = await pay({
+        amount: `${DollarAmount}.00`,
+        to: address,
+        testnet: true,
+      });
+      console.log("Payment sent:", payment.id);
+      successMsg(`Payment sent:, ${payment.id}`);
+    } catch (error) {
+      console.error("Payment failed:", error);
+    }
+  };
+
+  const toggleBuyCoffee = () => {
+buyCoffeeRef.current.classList.toggle("active");
+  }
 
   useEffect(() => {
     if (bnsDomain) {
@@ -88,6 +114,7 @@ function Home() {
   }, [bnsDomain]);
   return (
     <>
+      <ToastContainer />
       {loading && !empty ? (
         <span className="loader"></span>
       ) : empty ? (
@@ -134,11 +161,48 @@ function Home() {
             <title>DeLink - {bnsDomainState}</title>
           </Helmet>
           <div className="sidePopUp">
-            {bnsDomainState && bnsDomainState.endsWith(".eth") ? (
+            {bnsDomainState && !bnsDomainState.endsWith(".base.eth") ? (
               <img src={`/qr/${bnsDomainState}/qr`} alt="ENS QR Code" />
             ) : (
-              <></>
+              <div class="pay_container" ref={buyCoffeeRef}>
+                <h1>Buy {bnsDomainState} a coffee</h1>
+                <div class="payForm">
+                  <div class="input_cont">
+                    <span>$</span>
+                    <input
+                      type="number"
+                      ref={dollarInputRef}
+                      onChange={(e) => setDollarAmount(e.target.value)}
+                      placeholder="5"
+                      min="1"
+                      step="0.01"
+                    />
+                  </div>
+                  <button onClick={handlePayment}>
+                    Support $ <span id="amount">{DollarAmount}</span>
+                  </button>
+                </div>
+              </div>
             )}
+          </div>
+          <div className="payment_btn" onClick={toggleBuyCoffee}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-coffee-icon lucide-coffee"
+            >
+              <path d="M10 2v2" />
+              <path d="M14 2v2" />
+              <path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1" />
+              <path d="M6 2v2" />
+            </svg>
           </div>
           <div className="rows">
             {/* Avatar */}

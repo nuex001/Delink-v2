@@ -102,7 +102,7 @@ export async function getBasenameTextRecords(basename) {
     });
 
     // Log the fetched text records for debugging purposes
-    console.log("Fetched text records:", textRecords);
+    // console.log("Fetched text records:", textRecords);
 
     // Map the response to the corresponding BasenameTextRecordKeys
     const mappedTextRecords = textRecords.reduce((acc, current, index) => {
@@ -114,7 +114,7 @@ export async function getBasenameTextRecords(basename) {
     }, {});
 
     // Log the mapped text records for debugging
-    console.log("Mapped Text Records:", mappedTextRecords);
+    // console.log("Mapped Text Records:", mappedTextRecords);
 
     return mappedTextRecords;
   } catch (error) {
