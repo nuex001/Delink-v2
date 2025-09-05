@@ -162,8 +162,9 @@ function Home() {
           </Helmet>
           <div className="sidePopUp">
             {bnsDomainState && !bnsDomainState.endsWith(".base.eth") ? (
-              <img src={`/qr/${bnsDomainState}/qr`} alt="ENS QR Code" />
+              <></>
             ) : (
+             
               <div className="pay_container" ref={buyCoffeeRef}>
                 <h1>Buy {bnsDomainState} a coffee</h1>
                 <div className="payForm">

@@ -9,13 +9,4 @@ export default defineConfig({
       process: "process/browser",
     },
   },
-  server: {
-    proxy: {
-      "/qr": {
-        target: "https://api.ethfollow.xyz/api/v1/users",
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/qr/, ""),
-      },
-    },
-  },
 });
