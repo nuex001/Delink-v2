@@ -56,7 +56,8 @@ function AboutUs() {
   return (
     <div className="about">
       <h1>
-        Get So much more on <br /> Base with your profile
+        Unlock so much more on
+        <br /> Ens with your profile
       </h1>
       <div className="boxRows">
         <a
@@ -71,7 +72,7 @@ function AboutUs() {
           <div className="txt_cont">
             <h2>Build your onchain identity</h2>
             <p>
-              Use your ENS or BSASENAME text records to create a decentralized
+              Use your ENS or Basename text records to create a decentralized
               link-in-bio page. Just paste your handle and go.
             </p>
           </div>
@@ -84,7 +85,7 @@ function AboutUs() {
             <h2>Set up your Web3 socials</h2>
             <p>
               Link your Twitter, Farcaster, and more right from your Basename
-              profile on the Basename official site.
+              profile on the ENS/ Basename official site.
             </p>
           </div>
         </a>
@@ -96,7 +97,7 @@ function AboutUs() {
             <h2>Share your personalized link</h2>
             <p>
               Showcase your profile and social links at{" "}
-              <code>delink.click/yourname</code> no ".base.eth" required.
+              <code>delink.click/your Basename</code> or "brantly.eth" required.
             </p>
           </div>
         </a>
